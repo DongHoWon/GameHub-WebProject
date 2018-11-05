@@ -1,0 +1,15 @@
+CREATE TABLE userinfo (
+	uid   VARCHAR(10) NOT NULL, 
+	uname VARCHAR(10) NOT NULL, 
+	umail VARCHAR(50) NOT NULL, 
+	unick VARCHAR(20) NULL,     
+	udate DATE NOT NULL  
+);
+
+ALTER TABLE userinfo
+	ADD
+		CONSTRAINT userinfo
+		PRIMARY KEY (
+			uid,   
+			umail  
+		);

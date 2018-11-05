@@ -23,8 +23,20 @@ public class UserInfoREST {
 		return service.joinUser(userInfoVO);
 	}
 	
+	//아이디 중복조회
+	@RequestMapping(value = "/user/uid/{uid}", method = RequestMethod.GET)
+	public String uidDuplicate(@PathVariable String uid){
+		return service.uidDuplicate(uid);
+	}
+	
+	//이메일 중복조회
+	@RequestMapping(value = "/user/umail/{umail}", method = RequestMethod.GET)
+	public String umailDuplicate(@PathVariable String umail){
+		return service.umailDuplicate(umail);
+	}
+	
 	// 목록 조회
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public List<String> usersListView(){
 		return service.usersListView();
 	}

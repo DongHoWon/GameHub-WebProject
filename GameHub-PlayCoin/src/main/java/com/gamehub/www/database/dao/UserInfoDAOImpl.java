@@ -18,6 +18,8 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	private final String USERSLISTSVIEW ="listview";
 	private final String USERDETAILVIEW ="detailview";
 	private final String JOINUSER ="joinuser";
+	private final String UIDDUPLICATE="uidduplicate";
+	private final String UMAILDUPLICATE="umailduplicate";
 	
 	@Override
 	public List<String> usersListView() {
@@ -33,5 +35,17 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	public int joinUser(UserInfoVO userInfoVO) {
 		return sql.insert(NAMESPACE+JOINUSER,userInfoVO);
 	}
+
+	@Override
+	public String uidDuplicate(String uid) {
+		return sql.selectOne(NAMESPACE+UIDDUPLICATE,uid);
+	}
+
+	@Override
+	public String umailDuplicate(String umail) {
+		return sql.selectOne(NAMESPACE+UMAILDUPLICATE,umail);
+	}
+
+	
 
 }

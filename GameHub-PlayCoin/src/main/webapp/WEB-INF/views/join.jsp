@@ -26,7 +26,7 @@
 							<label>아이디</label>
 							<div style="display: -webkit-box;">
 								<input id="uid" style="width: 80%;" type="text"
-									class="form-control">
+									class="form-control" maxlength="10">
 								<button class="btn btn-primary" id="uidDuplicate"
 									style="font-size: 13px; margin: auto 0; margin-left: 6px;">중복확인</button>
 							</div>
@@ -37,7 +37,7 @@
 						<!-- 이름 입력 -->
 						<div class="form-group">
 							<label>이름</label> <input id="uname" style="width: 80%;"
-								type="text" class="form-control"> <span
+								type="text" class="form-control" maxlength="10"> <span
 								class="help-block">이름은 로그인 하는데 사용됩니다.</span>
 						</div>
 						<!-- /이름 입력 -->
@@ -48,7 +48,7 @@
 							<label>이메일</label> 
 							<div style="display: -webkit-box;">
 								<input id="umail" style="width: 80%;"
-									type="text" class="form-control">
+									type="text" class="form-control" maxlength="50">
 								<button class="btn btn-primary" id="umailDuplicate"
 									style="font-size: 13px;margin: auto 0; margin-left: 6px;">중복확인</button>
 							</div>
@@ -59,7 +59,7 @@
 						<!-- 별명 입력 -->
 						<div class="form-group">
 							<label>별명</label> <input id="unick" style="width: 80%;"
-								type="text" class="form-control">
+								type="text" class="form-control" maxlength="20">
 							<span class="help-block">별명을 입력해주세요.</span>
 						</div>
 						<!-- /별명 번호입력 -->
@@ -67,7 +67,7 @@
 					</div>
 
 					<div class="modal-footer">
-						<button class="btn btn-primary"
+						<button class="btn btn-primary" id="createUser"
 							style="font-size: 13px; margin: auto 0; margin-left: 6px;">CREATE
 							NEW ACCOUNT</button>
 						<button type="button" style="font-size: 13px;"
@@ -80,6 +80,97 @@
 </body>
 
 <script type="text/javascript">
+	//아이디 중복체크 boolean
+	var uidDuplicate=null;
+	
+	//중복체크한 아이디 저장
+	var saveuid=null;
+	
+	//중복체크한 이메일 저장
+	var saveumail=null;
+	
+	//이메일 중복체크 boolean
+	var umailDuplicate=null;
+	
+	//아이디 중복 조회 체크
+	$("#uidDuplicate").on("click",function(){
+		if($("#uid").val()=="")
+			alert('아이디를 입력해주세요.');
+		else{
+			$.ajax({
+				type : "GET",
+				url : '/www/user/uid/'+$("#uid").val(),
+				success : function(response) {
+					if ($("#uid").val() == response) {
+						alert('중복된 아이디 입니다. 다른 아이디를 사용 해주세요.');
+						uidDuplicate = true;
+					} else {
+						alert('사용 가능한 아이디 입니다.');
+						uidDuplicate = false;
+						saveuid=$("#uid").val();
+					}
+				}
+			});	 
+		}
+	});
+	
+	//이메일 중복 조회 체크
+	$("#umailDuplicate").on("click",function(){
+		if($("#umail").val()==""){
+			alert('이메일을 입력해주세요.');
+		} 
+		
+		else{
+			$.ajax({
+				type : "GET",
+				url : '/www/user/umail/'+$("#umail").val(),
+				success : function(response) {
+					if ($("#umail").val() == response) {
+						alert('중복된 이메일 입니다. 다른 이메일을 사용 해주세요');
+						umailDuplicate = true;
+					} else {
+						alert('사용 가능한 이메일입니다.');
+						umailDuplicate = false;
+						saveumail=$("#umail").val();
+					}
+				}
+			});	 
+		}
+	});
+	
+	//회원가입
+	$("#createUser").on("click",function(){
+		var param={
+				'uid':$("#uid").val(),
+				'uname':$("#uname").val(),
+				'umail':$("#umail").val(),
+				'unick':$("#unick").val()
+		};
+		
+		if(uidDuplicate==false && umailDuplicate==false &&saveuid==$("#uid").val() && saveumail==$("#umail").val()){
+			$.ajax({
+	             type : 'POST',
+	             url : '/www/user',
+	             contentType : "application/json",
+	             data : JSON.stringify(param),
+	             success : function(response) {
+					if(response>0){
+						alert('회원가입이 성공되었습니다.');
+					}
+					else
+						alert('회원가입 실패');
+	             },
+	             error : function(e) {
+	                 alert("ERROR : " + e.statusText);
+	             }
+	         }); 
+		}else{
+			alert('아이디 혹은 이메일 중복 체크를 해주세요.');
+		}
+	});
+	
+	
+	
 	$("#goMain").on("click",function(){
 		location.href='/www';
 	});

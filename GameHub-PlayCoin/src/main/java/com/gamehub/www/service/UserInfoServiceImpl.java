@@ -28,5 +28,16 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return dao.joinUser(userInfoVO);
 	}
 
+	@Override
+	public String uidDuplicate(String uid) {
+		return dao.uidDuplicate(uid);
+	}
+
+	@Override
+	public String umailDuplicate(String umail) {
+		return dao.umailDuplicate(umail);
+	}
+
+
 
 }

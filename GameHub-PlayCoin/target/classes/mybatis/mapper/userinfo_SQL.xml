@@ -17,7 +17,17 @@
 	
 	<!-- 회원 가입 -->
 	<insert id="joinuser">
-		INSERT INTO userinfo values (#{uid}, #{uname}, #{umail}, #{unick}, #{udate});
+		INSERT INTO userinfo values (#{uid}, #{uname}, #{umail}, #{unick}, NOW());
 	</insert>	
+	
+	<!-- 아이디 중복 조회  -->
+	<select id="uidduplicate" resultType="String">
+		SELECT uid FROM userinfo where uid=#{uid}
+	</select>
+	
+	<!--이메일 중복 조회  -->
+	<select id="umailduplicate" resultType="String">
+		SELECT umail FROM userinfo where umail=#{umail}
+	</select>
 
 </mapper>

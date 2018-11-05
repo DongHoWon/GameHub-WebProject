@@ -71,7 +71,7 @@
 							style="font-size: 13px; margin: auto 0; margin-left: 6px;">CREATE
 							NEW ACCOUNT</button>
 						<button type="button" style="font-size: 13px;"
-							class="btn btn-primary" id="goMain">Cancel</button>
+							class="btn btn-primary" id="goHome">Cancel</button>
 					</div>
 				</div>
 			</div>
@@ -140,38 +140,44 @@
 	
 	//회원가입
 	$("#createUser").on("click",function(){
-		var param={
-				'uid':$("#uid").val(),
-				'uname':$("#uname").val(),
-				'umail':$("#umail").val(),
-				'unick':$("#unick").val()
-		};
+		if($("#uid").val()=="" || $("#uname").val()=="" || $("#umail").val()==""){
+			alert('정보를 모두 입력해 주세요.');
+		}
 		
-		if(uidDuplicate==false && umailDuplicate==false &&saveuid==$("#uid").val() && saveumail==$("#umail").val()){
-			$.ajax({
-	             type : 'POST',
-	             url : '/www/user',
-	             contentType : "application/json",
-	             data : JSON.stringify(param),
-	             success : function(response) {
-					if(response>0){
-						alert('회원가입이 성공되었습니다.');
-					}
-					else
-						alert('회원가입 실패');
-	             },
-	             error : function(e) {
-	                 alert("ERROR : " + e.statusText);
-	             }
-	         }); 
-		}else{
-			alert('아이디 혹은 이메일 중복 체크를 해주세요.');
+		else{
+			var param={
+					'uid':$("#uid").val(),
+					'uname':$("#uname").val(),
+					'umail':$("#umail").val(),
+					'unick':$("#unick").val()
+			};
+			
+			if(uidDuplicate==false && umailDuplicate==false &&saveuid==$("#uid").val() && saveumail==$("#umail").val()){
+				$.ajax({
+		             type : 'POST',
+		             url : '/www/user',
+		             contentType : "application/json",
+		             data : JSON.stringify(param),
+		             success : function(response) {
+						if(response>0){
+							alert('회원가입이 성공되었습니다.');
+							location.href='/www';
+						}
+						else
+							alert('회원가입이 실패 되었습니다.');
+		             },
+		             error : function(e) {
+		                 alert("ERROR : " + e.statusText);
+		             }
+		         }); 
+			}else{
+				alert('아이디 혹은 이메일 중복 체크를 해주세요.');
+			}
 		}
 	});
 	
-	
-	
-	$("#goMain").on("click",function(){
+	//메인으로
+	$("#goHome").on("click",function(){
 		location.href='/www';
 	});
 </script>

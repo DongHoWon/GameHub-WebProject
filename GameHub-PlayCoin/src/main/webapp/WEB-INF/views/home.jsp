@@ -58,7 +58,7 @@
 						
 						<div style="margin-bottom:15px;">
 							<label>이름</label>
-    						<input type="text" class="form-control" id="uname"  placeholder="Enter Your ID!" maxlength="10">
+    						<input type="text" class="form-control" id="uname"  placeholder="Enter Your NAME!" maxlength="10">
    							<small class="form-text text-muted">이름은 10자까지 입력 가능합니다.</small>
    						</div>
    						
@@ -87,9 +87,31 @@
 		location.href='/www/join';
 	});
 	
-	//로그인 페이지 이동
+	//로그인
 	$("#loginbtn").on('click',function(){
-		location.href='/www/login';
+		var param={
+				'uid':$("#uid").val(),
+				'uname':$("#uname").val(),
+		};
+		
+		$.ajax({
+            type : 'POST',
+            url : '/www/user/checks',
+            contentType : "application/json",
+            data : JSON.stringify(param),
+            success : function(response) {
+				 if(Object.keys(response.length)>0){
+					alert('회원가입이 성공되었습니다.');
+					location.href='/www';
+				}
+				else
+					alert('회원가입이 실패 되었습니다.'); 
+					alert(response);
+            },
+            error : function(e) {
+                alert("ERROR : " + e.statusText);
+            }
+        }); 
 	});
 	
 </script>

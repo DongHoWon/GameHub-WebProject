@@ -38,6 +38,16 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return dao.umailDuplicate(umail);
 	}
 
+	@Override
+	public UserInfoVO loginCheck(UserInfoVO userInfoVO) {
+		return dao.loginCheck(userInfoVO);
+	}
+
+
+
+
+
+
 
 
 }

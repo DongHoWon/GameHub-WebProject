@@ -35,6 +35,12 @@ public class UserInfoREST {
 		return service.umailDuplicate(umail);
 	}
 	
+	//로그인 체크
+	@RequestMapping(value = "/user/checks", method = RequestMethod.POST)
+	public UserInfoVO loginCheck(@RequestBody UserInfoVO userInfoVO){
+		return service.loginCheck(userInfoVO);
+	}
+	
 	// 목록 조회
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public List<String> usersListView(){

@@ -1,11 +1,9 @@
 package com.gamehub.www.database.dao;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.gamehub.www.database.vo.UserInfoVO;
 
 @Repository
@@ -28,8 +26,8 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	}
 
 	@Override
-	public List<UserInfoVO> userDetailView(String uid) {
-		return sql.selectList(NAMESPACE+USERDETAILVIEW, uid);
+	public UserInfoVO userDetailView(String uid) {
+		return sql.selectOne(NAMESPACE+USERDETAILVIEW, uid);
 	}
 
 	@Override
@@ -43,8 +41,8 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	}
 
 	@Override
-	public String umailDuplicate(String umail) {
-		return sql.selectOne(NAMESPACE+UMAILDUPLICATE,umail);
+	public String umailDuplicate(UserInfoVO userInfoVO) {
+		return sql.selectOne(NAMESPACE+UMAILDUPLICATE,userInfoVO);
 	}
 
 	@Override

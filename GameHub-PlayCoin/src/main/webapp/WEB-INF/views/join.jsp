@@ -54,7 +54,7 @@
 							</div>
 							<span class="help-block">이메일을 입력해주세요.</span>
 						</div>
-						<!-- /이메일 번호입력 -->
+						<!-- /이메일 입력 -->
 						
 						<!-- 별명 입력 -->
 						<div class="form-group">
@@ -62,7 +62,7 @@
 								type="text" class="form-control" maxlength="20">
 							<span class="help-block">별명을 입력해주세요.</span>
 						</div>
-						<!-- /별명 번호입력 -->
+						<!-- /별명 입력 -->
 						
 					</div>
 
@@ -116,25 +116,39 @@
 	
 	//이메일 중복 조회 체크
 	$("#umailDuplicate").on("click",function(){
+		//이메일 저장
+		var umailVal = $("#umail").val();
+		//이메일 정규식 검증
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
 		if($("#umail").val()==""){
 			alert('이메일을 입력해주세요.');
 		} 
-		
 		else{
-			$.ajax({
-				type : "GET",
-				url : '/www/user/umail/'+$("#umail").val(),
-				success : function(response) {
-					if ($("#umail").val() == response) {
-						alert('중복된 이메일 입니다. 다른 이메일을 사용 해주세요');
-						umailDuplicate = true;
-					} else {
-						alert('사용 가능한 이메일입니다.');
-						umailDuplicate = false;
-						saveumail=$("#umail").val();
+			if(umailVal.match(regExp) != null){
+				var param ={
+					'umail' : $("#umail").val()
+				};
+				$.ajax({
+					type : "POST",
+					url : '/www/user/umail',
+					contentType : "application/json",
+				    data : JSON.stringify(param),
+					success : function(response) {
+						alert(response);
+						if (response==$("#umail").val()) {
+							alert('중복된 이메일 입니다. 다른 이메일을 사용 해주세요');
+							umailDuplicate = true;
+						} else {
+							alert('사용 가능한 이메일입니다.');
+							umailDuplicate = false;
+							saveumail=$("#umail").val();
+						}
 					}
-				}
-			});	 
+				});	 
+			}else{
+				alert('올바른 이메일 주소를 입력해주세요.');
+			}
 		}
 	});
 	

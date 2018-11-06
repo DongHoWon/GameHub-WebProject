@@ -1,10 +1,8 @@
 package com.gamehub.www.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gamehub.www.database.dao.UserInfoDAO;
 import com.gamehub.www.database.vo.UserInfoVO;
 
@@ -14,7 +12,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 	UserInfoDAO dao;
 	
 	@Override
-	public List<UserInfoVO> userDetailView(String uid) {
+	public UserInfoVO userDetailView(String uid) {
 		return dao.userDetailView(uid);
 	}
 
@@ -34,8 +32,8 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}
 
 	@Override
-	public String umailDuplicate(String umail) {
-		return dao.umailDuplicate(umail);
+	public String umailDuplicate(UserInfoVO userInfoVO) {
+		return dao.umailDuplicate(userInfoVO);
 	}
 
 	@Override

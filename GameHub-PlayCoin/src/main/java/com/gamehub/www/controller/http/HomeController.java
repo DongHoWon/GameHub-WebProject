@@ -23,4 +23,9 @@ public class HomeController {
 		return "main";
 	}
 	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail() {
+		return "detail";
+	}
+	
 }

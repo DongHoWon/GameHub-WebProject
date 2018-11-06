@@ -1,7 +1,6 @@
 package com.gamehub.www.controller.rest;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,10 +28,10 @@ public class UserInfoREST {
 		return service.uidDuplicate(uid);
 	}
 	
-	//이메일 중복조회
-	@RequestMapping(value = "/user/umail/{umail}", method = RequestMethod.GET)
-	public String umailDuplicate(@PathVariable String umail){
-		return service.umailDuplicate(umail);
+	//이메일 중복조회, QueryString dot notation 사용이 안됨.
+	@RequestMapping(value = "/user/umail", method = RequestMethod.POST)
+	public String umailDuplicate(@RequestBody UserInfoVO userInfoVO){
+		return service.umailDuplicate(userInfoVO);
 	}
 	
 	//로그인 체크
@@ -49,7 +48,7 @@ public class UserInfoREST {
 	
 	// 상세 조회
 	@RequestMapping(value = "/user/{uid}", method = RequestMethod.GET)
-	public List<UserInfoVO> userDetailView(@PathVariable String uid){
+	public UserInfoVO userDetailView(@PathVariable String uid){
 		return service.userDetailView(uid);
 	}
 }

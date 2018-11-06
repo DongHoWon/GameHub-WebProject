@@ -3,7 +3,8 @@ CREATE TABLE userinfo (
 	uname VARCHAR(10) NOT NULL, 
 	umail VARCHAR(50) NOT NULL, 
 	unick VARCHAR(20) NULL,     
-	udate DATE NOT NULL  
+	udate DATE NOT NULL,
+	CONSTRAINT User UNIQUE (uid, umail) 
 );
 
 ALTER TABLE userinfo

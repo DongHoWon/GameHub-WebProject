@@ -27,7 +27,7 @@
 	
 	<!--이메일 중복 조회  -->
 	<select id="umailduplicate" resultType="String">
-		SELECT umail FROM userinfo where umail=#{umail}
+		SELECT umail FROM userinfo where umail like #{umail}
 	</select>
 
 	<!--로그인 -->

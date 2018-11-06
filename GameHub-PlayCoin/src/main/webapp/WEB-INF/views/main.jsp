@@ -14,6 +14,16 @@
 <body>
 
 	<div style="width:100%;height:100%;">
+		<!--TOP  -->
+		<div>
+		
+		</div>
+
+		<!--BOTTOM  -->		
+		<div>
+		
+		</div>
+		
 	</div>
 </body>
 </html>

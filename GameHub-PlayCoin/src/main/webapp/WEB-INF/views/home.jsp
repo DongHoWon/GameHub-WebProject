@@ -65,7 +65,16 @@
    						<div>
    							<button id="loginbtn" type="button" class="btn btn-primary">로그인</button>
    							<button id="joinbtn" type="button" class="btn btn-primary">회원가입</button>
+   							<button id="users" type="button" class="btn btn-primary">사용자 목록 조회</button>
    						</div>
+   						
+   						<div style="margin-top:15px;">
+   							<span>Copyright(c)2018 WONDONGHO All rights reserved.</span>
+   						</div>
+   						
+   						<div style="margin-top:15px;">
+   							<span><a>https://github.com/DongHoWon</a></span>
+   						</div>	
 					</div>
 				</div>
 				
@@ -100,18 +109,22 @@
             contentType : "application/json",
             data : JSON.stringify(param),
             success : function(response) {
-				 if(Object.keys(response.length)>0){
-					alert('회원가입이 성공되었습니다.');
-					location.href='/www';
-				}
+				 if(Object.keys(response).length>0){
+					if($("#uid").val()==response.uid && $("#uname").val()==response.uname)
+						alert('로그인 성공되었습니다.');
+				 }
 				else
-					alert('회원가입이 실패 되었습니다.'); 
-					alert(response);
+					alert('로그인이 실패되었습니다. 회원 정보를 다시 입력해주세요.'); 
             },
             error : function(e) {
                 alert("ERROR : " + e.statusText);
             }
         }); 
+	});
+	
+	//사용자 목록 조회
+	$("#users").on('click',function(){
+		location.href='/www/main'
 	});
 	
 </script>

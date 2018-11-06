@@ -94,23 +94,33 @@
 	
 	//아이디 중복 조회 체크
 	$("#uidDuplicate").on("click",function(){
+		
+		//아이디 특수문자 포함 정규식 검증
+		var stringRegx = /[~!@?.\#$%<>^&*\()\-=+_\’]/gi;
+		//아이디 저장
+		var uidVal = $("#uid").val();
+		
 		if($("#uid").val()=="")
 			alert('아이디를 입력해주세요.');
 		else{
-			$.ajax({
-				type : "GET",
-				url : '/www/user/uid/'+$("#uid").val(),
-				success : function(response) {
-					if ($("#uid").val() == response) {
-						alert('중복된 아이디 입니다. 다른 아이디를 사용 해주세요.');
-						uidDuplicate = true;
-					} else {
-						alert('사용 가능한 아이디 입니다.');
-						uidDuplicate = false;
-						saveuid=$("#uid").val();
+			if(uidVal.match(stringRegx) == null){
+				$.ajax({
+					type : "GET",
+					url : '/www/user/uid/'+$("#uid").val(),
+					success : function(response) {
+						if ($("#uid").val() == response) {
+							alert('중복된 아이디 입니다. 다른 아이디를 사용 해주세요.');
+							uidDuplicate = true;
+						} else {
+							alert('사용 가능한 아이디 입니다.');
+							uidDuplicate = false;
+							saveuid=$("#uid").val();
+						}
 					}
-				}
-			});	 
+				});	
+			}
+			else
+				alert('특수 문자를 포함할 수 없습니다.');
 		}
 	});
 	
@@ -118,6 +128,7 @@
 	$("#umailDuplicate").on("click",function(){
 		//이메일 저장
 		var umailVal = $("#umail").val();
+		
 		//이메일 정규식 검증
 		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		
@@ -135,7 +146,6 @@
 					contentType : "application/json",
 				    data : JSON.stringify(param),
 					success : function(response) {
-						alert(response);
 						if (response==$("#umail").val()) {
 							alert('중복된 이메일 입니다. 다른 이메일을 사용 해주세요');
 							umailDuplicate = true;

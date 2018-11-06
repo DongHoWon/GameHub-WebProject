@@ -13,15 +13,16 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	SqlSession sql;
 	
 	private final String NAMESPACE = "userinfo_SQL.";
+	
 	private final String USERSLISTSVIEW ="listview";
 	private final String USERDETAILVIEW ="detailview";
 	private final String JOINUSER ="joinuser";
 	private final String UIDDUPLICATE="uidduplicate";
 	private final String UMAILDUPLICATE="umailduplicate";
-	private final String LOGINCHECK="logincheck";
+	private final String USERDELETE="userdelete";
 	
 	@Override
-	public List<String> usersListView() {
+	public List<UserInfoVO> usersListView() {
 		return sql.selectList(NAMESPACE+USERSLISTSVIEW);
 	}
 
@@ -46,14 +47,8 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 	}
 
 	@Override
-	public UserInfoVO loginCheck(UserInfoVO userInfoVO) {
-		return sql.selectOne(NAMESPACE+LOGINCHECK,userInfoVO);
+	public int userDelete(String uid) {
+		return sql.delete(NAMESPACE+USERDELETE,uid);
 	}
-
-
-
-
-
-	
 
 }

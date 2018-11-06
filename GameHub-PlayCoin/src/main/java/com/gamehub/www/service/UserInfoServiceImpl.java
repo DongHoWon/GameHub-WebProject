@@ -17,7 +17,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}
 
 	@Override
-	public List<String> usersListView() {
+	public List<UserInfoVO> usersListView() {
 		return dao.usersListView();
 	}
 
@@ -37,15 +37,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}
 
 	@Override
-	public UserInfoVO loginCheck(UserInfoVO userInfoVO) {
-		return dao.loginCheck(userInfoVO);
+	public int userDelete(String uid) {
+		return dao.userDelete(uid);
 	}
-
-
-
-
-
-
-
-
 }

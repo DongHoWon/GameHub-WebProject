@@ -44,27 +44,30 @@
 				<!--LOGIN_WRAPPER_DIV  -->
 				<div style="width:50%;height:100%;">
 					<!--LOGIN_DIV  -->
-					<div style="width:100%; height:40%;margin-top:40%;">
+					<div style="width:100%; height:40%;margin-top:30%;">
 	
 						<div>
 							<span style="font-size:40px;">GAMEHUB KOREA</span>
 						</div>
 						
 						<div style="margin-bottom:15px;">
-							<label>아이디</label>
-    						<input type="text" class="form-control" id="uid"  placeholder="Enter Your ID!" maxlength="10">
-   							<small class="form-text text-muted">ID는 10자까지 입력 가능합니다.</small>
+							<label>관리자 아이디</label>
+    						<input type="password" class="form-control" id="adminid"  placeholder="Enter Your ADMIN ID!" maxlength="10">
+   							<small class="form-text text-muted">관리자 ID는 admin 입니다.</small>
 						</div>
 						
 						<div style="margin-bottom:15px;">
-							<label>이름</label>
-    						<input type="text" class="form-control" id="uname"  placeholder="Enter Your NAME!" maxlength="10">
-   							<small class="form-text text-muted">이름은 10자까지 입력 가능합니다.</small>
+							<label>관리자 이름</label>
+    						<input type="password" class="form-control" id="adminname"  placeholder="Enter Your ADMIN NAME!" maxlength="10">
+   							<small class="form-text text-muted">관리자 이름은 admin 입니다.</small>
    						</div>
    						
    						<div>
-   							<button id="loginbtn" type="button" class="btn btn-primary">로그인</button>
+   							<button id="loginbtn" type="button" class="btn btn-primary">관리자로그인</button>
    							<button id="joinbtn" type="button" class="btn btn-primary">회원가입</button>
+   						</div>
+   						
+   						<div style="margin-top:15px;">
    							<button id="users" type="button" class="btn btn-primary">사용자 목록 조회</button>
    						</div>
    						
@@ -73,7 +76,7 @@
    						</div>
    						
    						<div style="margin-top:15px;">
-   							<span><a>https://github.com/DongHoWon</a></span>
+   							<span><a href="https://github.com/DongHoWon/GameHub-WebProject">https://github.com/DongHoWon/GameHub-WebProject</a></span>
    						</div>	
 					</div>
 				</div>
@@ -98,28 +101,18 @@
 	
 	//로그인
 	$("#loginbtn").on('click',function(){
-		var param={
-				'uid':$("#uid").val(),
-				'uname':$("#uname").val(),
-		};
+		var screenW = screen.availWidth;  
+		var screenH = screen.availHeight;
+		var popW = 800; 
+		var popH = 200; 
+		var posL=( screenW-popW ) / 2;   
+		var posT=( screenH-popH ) / 2;
 		
-		$.ajax({
-            type : 'POST',
-            url : '/www/user/checks',
-            contentType : "application/json",
-            data : JSON.stringify(param),
-            success : function(response) {
-				 if(Object.keys(response).length>0){
-					if($("#uid").val()==response.uid && $("#uname").val()==response.uname)
-						alert('로그인 성공되었습니다.');
-				 }
-				else
-					alert('로그인이 실패되었습니다. 회원 정보를 다시 입력해주세요.'); 
-            },
-            error : function(e) {
-                alert("ERROR : " + e.statusText);
-            }
-        }); 
+		if($("#adminid").val()=="admin" && $("#adminname").val()=="admin"){
+			window.open("/www/admin","", 'width='+ popW +',height='+ popH +',top='+ posT +',left='+ posL +',resizable=no,scrollbars=no'); 
+		}else{
+			alert('관리자 정보가 올바르지 않습니다.');
+		}
 	});
 	
 	//사용자 목록 조회

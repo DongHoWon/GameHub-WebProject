@@ -34,15 +34,9 @@ public class UserInfoREST {
 		return service.umailDuplicate(userInfoVO);
 	}
 	
-	//로그인 체크
-	@RequestMapping(value = "/user/checks", method = RequestMethod.POST)
-	public UserInfoVO loginCheck(@RequestBody UserInfoVO userInfoVO){
-		return service.loginCheck(userInfoVO);
-	}
-	
 	// 목록 조회
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public List<String> usersListView(){
+	public List<UserInfoVO> usersListView(){
 		return service.usersListView();
 	}
 	
@@ -50,5 +44,11 @@ public class UserInfoREST {
 	@RequestMapping(value = "/user/{uid}", method = RequestMethod.GET)
 	public UserInfoVO userDetailView(@PathVariable String uid){
 		return service.userDetailView(uid);
+	}
+	
+	//사용자 삭제
+	@RequestMapping(value = "/user/{uid}", method = RequestMethod.DELETE)
+	public int userDelete(@PathVariable String uid){
+		return service.userDelete(uid);
 	}
 }

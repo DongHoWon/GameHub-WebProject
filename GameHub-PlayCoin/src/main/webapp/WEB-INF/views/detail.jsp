@@ -58,14 +58,5 @@
 	    }); 
 	});
 	
-	//메인으로
-	$("#goMain").on('click',function(){
-		location.href='/www';
-	});
-
-
-	function detailUser(uid){
-		alert(uid);
-	}
 </script>
 </html>

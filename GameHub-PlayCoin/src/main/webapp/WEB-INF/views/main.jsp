@@ -33,6 +33,7 @@
 						<td>상세조회</td>
 					</tr>
 				</thead>
+				
 				<tbody id="tbodys">
 					
 				</tbody>
@@ -52,8 +53,8 @@
 	        	if(response.length>0){
 	        		alert('사용자 목록 조회 완료');
 	        		for(var i=0;i<response.length;i++){
-	        			$user='<tr style="border:1px solid black;"><td>'+ (i+1) +'</td><td>'+ response[i] +'</td>'
-	        				 +'<td><button type="button" class="btn btn-primary" onclick="detailUser(\''+ response[i] + '\')">상세조회</button></td></tr>';
+	        			$user='<tr style="border:1px solid black;"><td>'+ (i+1) +'</td><td>'+ response[i].uid +'</td>'
+	        			+'<td><button type="button" class="btn btn-primary" onclick="detailUser(\''+ response[i].uid + '\')">상세조회</button></td></tr>';
 	        			$("#tbodys").append($user);
 	        		}
 	        	}else{

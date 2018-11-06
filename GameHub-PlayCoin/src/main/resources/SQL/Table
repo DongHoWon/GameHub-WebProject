@@ -6,11 +6,3 @@ CREATE TABLE userinfo (
 	udate DATE NOT NULL,
 	CONSTRAINT User UNIQUE (uid, umail) 
 );
-
-ALTER TABLE userinfo
-	ADD
-		CONSTRAINT userinfo
-		PRIMARY KEY (
-			uid,   
-			umail  
-		);

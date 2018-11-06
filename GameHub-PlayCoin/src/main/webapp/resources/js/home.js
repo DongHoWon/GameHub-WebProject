@@ -5,6 +5,7 @@
 	
 	//로그인
 	$("#loginbtn").on('click',function(){
+		//사용자 해상도에 맞춰서 window창을 가로,세로 정렬해서 띄운다.
 		var screenW = screen.availWidth;  
 		var screenH = screen.availHeight;
 		var popW = 800; 
@@ -13,8 +14,10 @@
 		var posT=( screenH-popH ) / 2;
 		
 		if($("#adminid").val()=="admin" && $("#adminname").val()=="admin"){
+			
 			$("#adminid").val("");
 			$("#adminname").val("");
+			
 			alert('관리자 로그인 완료.');
 			window.open("/www/admin","", 'width='+ popW +',height='+ popH +',top='+ posT +',left='+ posL +',resizable=no,scrollbars=no'); 
 		}else{

@@ -1,4 +1,4 @@
-//아이디 중복체크 boolean
+    //아이디 중복체크 boolean
 	var uidDuplicate=null;
 	
 	//중복체크한 아이디 저장
@@ -18,7 +18,7 @@
 		//아이디 저장
 		var uidVal = $("#uid").val();
 		
-		if($("#uid").val()=="")
+		if(uidVal=="")
 			alert('아이디를 입력해주세요.');
 		else{
 			if(uidVal.match(stringRegx) == null){
@@ -26,13 +26,13 @@
 					type : "GET",
 					url : '/www/user/uid/'+$("#uid").val(),
 					success : function(response) {
-						if ($("#uid").val() == response) {
+						if (uidVal == response) {
 							alert('중복된 아이디 입니다. 다른 아이디를 사용 해주세요.');
 							uidDuplicate = true;
 						} else {
 							alert('사용 가능한 아이디 입니다.');
 							uidDuplicate = false;
-							saveuid=$("#uid").val();
+							saveuid=uidVal;
 						}
 					}
 				});	
@@ -50,7 +50,7 @@
 		//이메일 정규식 검증
 		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		
-		if($("#umail").val()==""){
+		if(umailVal==""){
 			alert('이메일을 입력해주세요.');
 		} 
 		else{
@@ -64,13 +64,13 @@
 					contentType : "application/json",
 				    data : JSON.stringify(param),
 					success : function(response) {
-						if (response==$("#umail").val()) {
+						if (umailVal == response) {
 							alert('중복된 이메일 입니다. 다른 이메일을 사용 해주세요');
 							umailDuplicate = true;
 						} else {
 							alert('사용 가능한 이메일입니다.');
 							umailDuplicate = false;
-							saveumail=$("#umail").val();
+							saveumail = umailVal;
 						}
 					}
 				});	 
@@ -94,7 +94,7 @@
 					'unick':$("#unick").val()
 			};
 			
-			if(uidDuplicate==false && umailDuplicate==false &&saveuid==$("#uid").val() && saveumail==$("#umail").val()){
+			if(uidDuplicate==false && umailDuplicate==false && saveuid==$("#uid").val() && saveumail==$("#umail").val()){
 				$.ajax({
 		             type : 'POST',
 		             url : '/www/user',

@@ -21,8 +21,8 @@ $(function(){
 	    }); 
 	});
 	
-	//메인으로
-	$("#goMain").on('click',function(){
+	//홈으로
+	$("#goHome").on('click',function(){
 		location.href='/www';
 	});
 

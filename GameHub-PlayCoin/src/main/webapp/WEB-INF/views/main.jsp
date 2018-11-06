@@ -6,10 +6,6 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -20,7 +16,7 @@
 		</div>
 
 		<div style="width:100%;height:10%;">
-			<button id="goMain" type="button" class="btn btn-primary">메인 화면으로 돌아가기</button>
+			<button id="goHome" type="button" class="btn btn-primary">홈 화면으로 돌아가기</button>
 		</div>
 
 		<!--BOTTOM  -->		

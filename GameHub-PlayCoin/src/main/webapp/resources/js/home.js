@@ -13,6 +13,9 @@
 		var posT=( screenH-popH ) / 2;
 		
 		if($("#adminid").val()=="admin" && $("#adminname").val()=="admin"){
+			$("#adminid").val("");
+			$("#adminname").val("");
+			alert('관리자 로그인 완료.');
 			window.open("/www/admin","", 'width='+ popW +',height='+ popH +',top='+ posT +',left='+ posL +',resizable=no,scrollbars=no'); 
 		}else{
 			alert('관리자 정보가 올바르지 않습니다.');

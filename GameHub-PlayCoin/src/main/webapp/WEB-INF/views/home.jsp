@@ -7,8 +7,6 @@
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 	
 <body>
@@ -76,7 +74,7 @@
    						</div>
    						
    						<div style="margin-top:15px;">
-   							<span><a href="https://github.com/DongHoWon/GameHub-WebProject">https://github.com/DongHoWon/GameHub-WebProject</a></span>
+   							<span><a href="https://github.com/DongHoWon/GameHub-WebProject" target="_blank">https://github.com/DongHoWon/GameHub-WebProject</a></span>
    						</div>	
 					</div>
 				</div>
@@ -91,35 +89,5 @@
 	</div>
 
 </body>
-
-<script type="text/javascript">
-	
-	//회원가입 페이지 이동
-	$("#joinbtn").on('click',function(){
-		location.href='/www/join';
-	});
-	
-	//로그인
-	$("#loginbtn").on('click',function(){
-		var screenW = screen.availWidth;  
-		var screenH = screen.availHeight;
-		var popW = 800; 
-		var popH = 200; 
-		var posL=( screenW-popW ) / 2;   
-		var posT=( screenH-popH ) / 2;
-		
-		if($("#adminid").val()=="admin" && $("#adminname").val()=="admin"){
-			window.open("/www/admin","", 'width='+ popW +',height='+ popH +',top='+ posT +',left='+ posL +',resizable=no,scrollbars=no'); 
-		}else{
-			alert('관리자 정보가 올바르지 않습니다.');
-		}
-	});
-	
-	//사용자 목록 조회
-	$("#users").on('click',function(){
-		location.href='/www/main'
-	});
-	
-</script>
-
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/home.js"></script>
 </html>

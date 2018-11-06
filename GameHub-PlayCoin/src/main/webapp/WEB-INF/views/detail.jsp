@@ -6,14 +6,16 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-</head>
 <%
 	String uid=request.getParameter("uid");
 %>
+<script type="text/javascript">
+	var uid = '<%=uid%>';
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/detail.js"></script>
+
+</head>
+
 <body>
 
 	<div style="width:100%;height:100%;">
@@ -35,28 +37,4 @@
 		</div>
 	</div>
 </body>
-
-<script type="text/javascript">
-	$(function(){
-		//사용자들 ID 조회
-		$.ajax({
-	        type : 'GET',
-	        url : '/www/user/<%=uid%>',
-	        success : function(response) {
-	        	if(Object.keys(response).length>0){
-	        		alert('사용자 상세조회  완료');
-        			$user='<tr style="border:1px solid black;"><td>'+ response.uid +'</td><td>'+ response.uname +'</td>'
-        				 +'<td>'+response.umail+'</td><td>'+response.unick+'</td><td>'+response.udate+'</td></tr>';
-        			$("#tbodys").append($user);
-	        	}else{
-	        		alert('사용자 상세조회 실패.');
-	        	}
-	        },
-	        error : function(e) {
-	            alert("ERROR : " + e.statusText);
-	        }
-	    }); 
-	});
-	
-</script>
 </html>
